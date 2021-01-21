@@ -1,4 +1,5 @@
 import React from 'react';
+import FollowerCard from '../components/FollowerCard';
 import { useFetchUsers } from './../hooks/useFetchUsers';
 
 export default function Users() {
@@ -10,7 +11,7 @@ export default function Users() {
     <>
       {users.length > 0 &&
         users.map((user) => {
-          return <h1 key={user.id}>{user.login}</h1>;
+          return <FollowerCard user={user} key={user.id} />;
         })}
     </>
   );
