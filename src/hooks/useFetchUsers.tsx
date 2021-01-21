@@ -9,7 +9,7 @@ type TProps = {
 type TStatus = 'loading' | 'fulfilled' | 'error';
 
 export const useFetchUsers = ({ howManyUsers, pageNumber }: TProps) => {
-  const [users, setUsers] = React.useState<TUser | null>(null);
+  const [users, setUsers] = React.useState<TUser[] | null>(null);
   const [status, setStatus] = React.useState<TStatus>('loading');
 
   React.useEffect(() => {
@@ -18,8 +18,12 @@ export const useFetchUsers = ({ howManyUsers, pageNumber }: TProps) => {
         const res = await fetch(
           `https://api.github.com/users/john-smilga/followers?page=${pageNumber}&per_page=${howManyUsers}`
         );
+        if (res.status !== 200) {
+          throw new Error('Non-200 status code');
+        }
         const data = await res.json();
-        console.log(data);
+        setUsers(data);
+        setStatus('fulfilled');
       } catch (error) {
         console.warn(error.message);
         setStatus('error');

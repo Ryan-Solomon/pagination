@@ -1,8 +1,13 @@
 import React from 'react';
 import './App.css';
+import Users from './pages/Users';
 
 export const App = () => {
-  return <h1>App</h1>;
+  return (
+    <>
+      <Users />
+    </>
+  );
 };
 
 export default App;
