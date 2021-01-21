@@ -8,7 +8,7 @@ type TProps = {
 
 type TStatus = 'loading' | 'fulfilled' | 'error';
 
-export const useFetchUsers: FC<TProps> = ({ pageNumber, howManyUsers }) => {
+export const useFetchUsers = ({ howManyUsers, pageNumber }: TProps) => {
   const [users, setUsers] = React.useState<TUser | null>(null);
   const [status, setStatus] = React.useState<TStatus>('loading');
 
