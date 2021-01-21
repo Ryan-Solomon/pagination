@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import FollowerCard from '../components/FollowerCard';
 import { useFetchUsers } from './../hooks/useFetchUsers';
 
 export default function Users() {
-  const { status, users } = useFetchUsers({ howManyUsers: 10, pageNumber: 1 });
+  const [pageNumber, setPageNumber] = useState(0);
+  const [howManyUsers, setHowManyUsers] = useState(10);
+  const { status, users } = useFetchUsers({ howManyUsers, pageNumber });
   if (status === 'loading') return <h1>Loading...</h1>;
   if (status === 'error' || !users) return <h1>Error</h1>;
 
+  const changePage = (direction: 'PREV' | 'NEXT') => {
+    if (direction === 'PREV') {
+      setPageNumber(Math.max(0, pageNumber - 1));
+    } else if (direction === 'NEXT') {
+      setPageNumber(Math.min(10, pageNumber + 1));
+    }
+  };
+
   return (
-    <UsersContainer>
-      {users.length > 0 &&
-        users.map((user) => {
-          return <FollowerCard user={user} key={user.id} />;
-        })}
-    </UsersContainer>
+    <>
+      <UsersContainer>
+        {users.length > 0 &&
+          users.map((user) => {
+            return <FollowerCard user={user} key={user.id} />;
+          })}
+      </UsersContainer>
+      <Button onClick={() => changePage('PREV')}>Prev</Button>
+      <Button onClick={() => changePage('NEXT')}>Next</Button>
+    </>
   );
 }
 
@@ -23,4 +37,9 @@ const UsersContainer = styled.main`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 2rem;
+`;
+
+const Button = styled.button`
+  padding: 1rem;
+  font-size: 1.5rem;
 `;
