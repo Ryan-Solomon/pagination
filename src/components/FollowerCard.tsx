@@ -6,7 +6,14 @@ type TProps = {
 };
 
 export default function FollowCard({ user }: TProps) {
-  return <h1>Follow</h1>;
+  const { avatar_url, login } = user;
+  return (
+    <CardContainer>
+      <CardImage src={avatar_url} alt='user' />
+      <CardName>{login}</CardName>
+      <CardButton>View Profile</CardButton>
+    </CardContainer>
+  );
 }
 
 const CardContainer = styled.div`
