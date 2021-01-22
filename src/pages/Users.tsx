@@ -28,6 +28,7 @@ export default function Users() {
           })}
       </UsersContainer>
       <BottomPages
+        pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         changePage={changePage}
         pageCount={10}

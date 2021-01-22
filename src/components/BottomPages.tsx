@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 type TProps = {
   pageCount: number;
+  pageNumber: number;
   changePage: (direction: 'PREV' | 'NEXT') => void;
   setPageNumber: (num: number) => void;
 };
@@ -11,6 +12,7 @@ export default function BottomPages({
   pageCount,
   changePage,
   setPageNumber,
+  pageNumber,
 }: TProps) {
   const [pagesArray, setPagesArray] = useState(
     new Array(pageCount).fill(null).map((_, idx) => idx + 1)
