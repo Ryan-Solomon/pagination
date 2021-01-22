@@ -27,9 +27,7 @@ export default function Users() {
             return <FollowerCard user={user} key={user.id} />;
           })}
       </UsersContainer>
-      <BottomPages pageCount={10} />
-      <Button onClick={() => changePage('PREV')}>Prev</Button>
-      <Button onClick={() => changePage('NEXT')}>Next</Button>
+      <BottomPages changePage={changePage} pageCount={10} />
     </>
   );
 }
@@ -39,9 +37,4 @@ const UsersContainer = styled.main`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 2rem;
-`;
-
-const Button = styled.button`
-  padding: 1rem;
-  font-size: 1.5rem;
 `;
