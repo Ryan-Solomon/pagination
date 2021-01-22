@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import BottomPages from '../components/BottomPages';
 import FollowerCard from '../components/FollowerCard';
 import { useFetchUsers } from './../hooks/useFetchUsers';
 
@@ -26,6 +27,7 @@ export default function Users() {
             return <FollowerCard user={user} key={user.id} />;
           })}
       </UsersContainer>
+      <BottomPages pageCount={10} />
       <Button onClick={() => changePage('PREV')}>Prev</Button>
       <Button onClick={() => changePage('NEXT')}>Next</Button>
     </>
