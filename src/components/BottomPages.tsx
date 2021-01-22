@@ -13,10 +13,10 @@ export default function BottomPages({ pageCount, changePage }: TProps) {
   console.log(pagesArray);
   return (
     <PagesContainer>
+      <Button onClick={() => changePage('PREV')}>Prev</Button>
       {pagesArray.map((v, idx) => {
         return <PageSelector key={v + idx}>{v}</PageSelector>;
       })}
-      <Button onClick={() => changePage('PREV')}>Prev</Button>
       <Button onClick={() => changePage('NEXT')}>Next</Button>
     </PagesContainer>
   );
@@ -24,11 +24,16 @@ export default function BottomPages({ pageCount, changePage }: TProps) {
 
 const PagesContainer = styled.ul`
   display: flex;
+  justify-content: center;
   list-style: none;
+  width: 100%;
 `;
 
 const PageSelector = styled.li`
   background: #444;
+  margin: 0 10px;
+  padding: 1rem;
+  font-size: 1.5rem;
   color: white;
 `;
 
