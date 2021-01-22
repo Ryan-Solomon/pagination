@@ -23,7 +23,11 @@ export default function BottomPages({
       <Button onClick={() => changePage('PREV')}>Prev</Button>
       {pagesArray.map((v, idx) => {
         return (
-          <PageSelector onClick={() => setPageNumber(v)} key={v + idx}>
+          <PageSelector
+            background={v === pageNumber ? '#222' : '#444'}
+            onClick={() => setPageNumber(v)}
+            key={v + idx}
+          >
             {v}
           </PageSelector>
         );
@@ -40,8 +44,12 @@ const PagesContainer = styled.ul`
   width: 100%;
 `;
 
-const PageSelector = styled.li`
-  background: #444;
+type TPageSelectorProps = {
+  background: string;
+};
+
+const PageSelector = styled.li<TPageSelectorProps>`
+  background: ${({ background }) => background};
   margin: 0 10px;
   padding: 1rem;
   font-size: 1.5rem;
