@@ -27,7 +27,11 @@ export default function Users() {
             return <FollowerCard user={user} key={user.id} />;
           })}
       </UsersContainer>
-      <BottomPages changePage={changePage} pageCount={10} />
+      <BottomPages
+        setPageNumber={setPageNumber}
+        changePage={changePage}
+        pageCount={10}
+      />
     </>
   );
 }
